@@ -19,5 +19,9 @@ class Department(Base):
     __tablename__="departments"
     id=Column(Integer,primary_key=True)
     name=Column(String,nullable=False) 
-    
-       
+
+#creating the project model
+class Project(Base):
+    __tablename__="projects"
+    id=Column(Integer,primary_key=True)
+    name=Column(String,nullable=False)   
