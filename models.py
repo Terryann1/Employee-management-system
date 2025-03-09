@@ -15,6 +15,11 @@ class Employee(Base):
     job_title=Column(String,nullable=False)
     age=Column(Integer,nullable=False)
 
+    #Adding a foreign key
+    project_id=Column(Integer,ForeignKey('projects.id'))
+    department_id=Column(Integer,ForeignKey('departments.id'))
+   
+
 # creating the department model
 class Department(Base):
     __tablename__="departments"

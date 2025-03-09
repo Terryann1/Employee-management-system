@@ -24,8 +24,9 @@ def upgrade() -> None:
     sa.Column('name',sa.String(),nullable=False),
     sa.Column('email',sa.String(),nullable=False),
     sa.Column('age',sa.Integer(),nullable=False),
-    sa.Column('job_title',sa.String(),nullable=False)
-    
+    sa.Column('job_title',sa.String(),nullable=False),
+    sa.Column('department_id',sa.Integer(),nullable=False),
+    sa.Column('project_id',sa.Integer(),nullable=False)   
     )
 
     op.create_table('departments',
