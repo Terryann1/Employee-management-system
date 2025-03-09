@@ -19,8 +19,30 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
-    pass
+    op.create_table('employees',
+    sa.Column('id',sa.Integer(),nullable=False),
+    sa.Column('name',sa.String(),nullable=False),
+    sa.Column('email',sa.String(),nullable=False),
+    sa.Column('age',sa.Integer(),nullable=False),
+    sa.Column('job_title',sa.String(),nullable=False)
+    
+    )
+
+    op.create_table('departments',
+    sa.Column('id',sa.Integer(),nullable=False),
+    sa.Column('name',sa.String(),nullable=False)
+    
+    )
+
+    op.create_table('projects',
+    sa.Column('id',sa.Integer(),nullable=False),
+    sa.Column('name',sa.Integer(),nullable=False)
+    
+    )
+
 
 
 def downgrade() -> None:
-    pass
+    op.drop_table('employees')
+    op.drop_table('departments')
+    op.drop_table('projects')
