@@ -13,3 +13,11 @@ class Employee(Base):
     name=Column(String,nullable=False)
     email=Column(String,nullable=False)
     job_title=Column(String,nullable=False)
+
+# creating the department model
+class Department(Base):
+    __tablename__="departments"
+    id=Column(Integer,primary_key=True)
+    name=Column(String,nullable=False) 
+    
+       
