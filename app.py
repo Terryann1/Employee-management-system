@@ -62,7 +62,7 @@ def add_department(name):
 def list_employees():
     session=Session()
 
-    #Querying from the database
+    #Fetch from the database
     employees=session.query(Employee).all()
 
     #creating a list of employees
@@ -75,6 +75,29 @@ def list_employees():
          click.echo("{:<20} {:<5} {:<20} {:<25} {:<10}".format(e.name,e.age,e.email,e.job_title,e.project_id,e.department_id
            
         ))
+    session.close()
+         
+
+#command for deleting an employeee
+@cli.command()
+@click.option('--id',prompt='Enter employee ID',type=int)
+def delete_employee(id):
+    session=Session()
+
+     # Fetch the employee by ID
+    delete_employee = session.query(Employee).filter(Employee.id == id).first()
+    
+    if delete_employee:
+        session.delete(delete_employee)
+        session.commit()
+        click.echo(f"Employee with ID {id} has been deleted")
+
+    else:
+        click.echo(f"Employee with ID {id} does not exist")  
+
+
+
+
          
     
            
