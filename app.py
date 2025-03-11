@@ -93,7 +93,30 @@ def delete_employee(id):
         click.echo(f"Employee with ID {id} has been deleted")
 
     else:
-        click.echo(f"Employee with ID {id} does not exist")  
+        click.echo(f"Employee with ID {id} does not exist")
+        session.close() 
+
+#command for updating an employee's details
+@cli.command()
+@click.option('--id',prompt='Enter ID',type=int)
+@click.option('--new_email',prompt='Enter new email',type=str)
+def update_employee(id,new_email):
+    session=Session()
+
+    #fetch from the database
+    employee=session.query(Employee).filter(Employee.id==id).first()
+    if employee:
+
+        #setting the new email
+        employee.email=new_email
+        session.commit()
+        click.echo(f"Employee with ID {id} email has been updated to {new_email}.")
+    else:
+        click.echo(f"Employee with ID {id} does not exist.")
+        session.close()    
+
+    
+
 
 
 
