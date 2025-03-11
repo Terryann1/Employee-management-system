@@ -54,7 +54,31 @@ def add_department(name):
     department=Department(name=name)
     session.add(department)
     session.commit()
-    click.echo("Department added")        
+    click.echo("Department added") 
+
+
+ #Command for generating a list of employees 
+@cli.command()
+def list_employees():
+    session=Session()
+
+    #Querying from the database
+    employees=session.query(Employee).all()
+
+    #creating a list of employees
+    if not employees:
+        click.echo("No employees found")
+    click.echo("List of all employees:")
+    click.echo("{:<20} {:<5} {:<20} {:<25} {:<10}".format("Name", "Age", "Job Title", "Project ID", "Department ID"))
+    click.echo("-" * 85)
+    for e in employees:
+         click.echo("{:<20} {:<5} {:<20} {:<25} {:<10}".format(e.name,e.age,e.email,e.job_title,e.project_id,e.department_id
+           
+        ))
+         
+    
+           
+
 
 
 
