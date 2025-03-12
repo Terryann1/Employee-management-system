@@ -46,7 +46,7 @@ def add_project(name):
     click.echo("Project added")
     session.close() 
 
-#command to andd a new department
+#command to add a new department
 @cli.command()
 @click.option('--name',prompt='Department name')
 def add_department(name):
@@ -113,7 +113,22 @@ def update_employee(id,new_email):
         click.echo(f"Employee with ID {id} email has been updated to {new_email}.")
     else:
         click.echo(f"Employee with ID {id} does not exist.")
-        session.close()    
+        session.close()
+
+#find an object by attribute
+@cli.command()
+@click.option('--id',prompt='Enter Employee ID',type=int)
+def find_by_attribute(id):
+    session=Session()
+    employee_attribute=session.query(Employee).filter(Employee.id == id).first()
+    session.commit()
+    if employee_attribute:
+        click.echo(f"Employee with ID {id} has attributes:{employee_attribute.name} | {employee_attribute.email} | {employee_attribute.job_title} | {employee_attribute.project_id} | {employee_attribute.department_id}")
+    else:
+        click.echo("Employee not found")    
+    session.close()
+
+   
 
     
 
