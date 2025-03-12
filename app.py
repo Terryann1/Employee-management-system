@@ -16,6 +16,7 @@ def cli():
 
     """
      pass
+@
 
 #command to add a new employee
 @cli.command()
