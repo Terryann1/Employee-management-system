@@ -16,7 +16,6 @@ employee_project = Table(
 
 #Creating the employee model
 class Employee(Base):
-    
     __tablename__="employees"
     id=Column(Integer,primary_key=True)
     name=Column(String,nullable=False)
@@ -28,22 +27,18 @@ class Employee(Base):
     project_id=Column(Integer,ForeignKey('projects.id'))
     department_id=Column(Integer,ForeignKey('departments.id'))
 
-   
-
     #one-to-many relationship
     department = relationship("Department", backref="employees")
 
       # Many-to-Many relationship with Project
     projects = relationship("Project", secondary=employee_project, back_populates="employees")
     
-
-   
-
 # creating the department model
 class Department(Base):
     __tablename__="departments"
     id=Column(Integer,primary_key=True)
     name=Column(String,nullable=False) 
+
 
 #creating the project model
 class Project(Base):

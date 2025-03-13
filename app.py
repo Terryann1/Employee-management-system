@@ -16,7 +16,7 @@ def cli():
 
     """
      pass
-@
+
 
 #command to add a new employee
 @cli.command()
@@ -28,12 +28,20 @@ def cli():
 @click.option('--department_id',prompt='Department ID',type=int)
 
 def add_employee(name,age,email,job_title,project_id,department_id):
-    session=Session()
-    employee=Employee(name=name, age=age,email=email,job_title=job_title,project_id=project_id,department_id=department_id)
-    session.add(employee)
-    session.commit()
-    click.echo(f"Added employee: {employee.name}")
-    session.close()
+        
+        
+   
+          session=Session()
+          employee=Employee(name=name, age=age,email=email,job_title=job_title,project_id=project_id,department_id=department_id)
+          session.add(employee)
+          session.commit()
+          click.echo(f"Added employee: {employee.name}")
+          session.close()
+        
+        
+        
+        
+       
 
 # #command to add a new project
 @cli.command()
@@ -51,11 +59,16 @@ def add_project(name):
 @cli.command()
 @click.option('--name',prompt='Department name')
 def add_department(name):
-    session=Session()
-    department=Department(name=name)
-    session.add(department)
-    session.commit()
-    click.echo("Department added") 
+    
+         session=Session()
+         department=Department(name=name)
+         session.add(department)
+         session.commit()
+         click.echo("Department added")
+         session.close() 
+
+    
+
 
 
  #Command for generating a list of employees 
